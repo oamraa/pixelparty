@@ -1,0 +1,32 @@
+/* Custom pixel font application */
+.retro-text {
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+}
+
+h1, h2, h3, button, input {
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* Crisp rendering for HTML5 Canvas */
+canvas {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* Subtle CRT scanline effect */
+body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
