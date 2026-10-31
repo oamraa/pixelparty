@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelParty - P2P Web Arcade</title>
+    <!-- Tailwind CSS for rapid UI styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PeerJS for WebRTC P2P Networking -->
+    <script src="https://unpkg.com/peerjs@1.5.1/dist/peerjs.min.js"></script>
+    <!-- Retro Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center p-4">
+    
+    <!-- Arcade Hub Lobby -->
+    <div id="lobby-ui" class="max-w-2xl w-full text-center mt-10">
+        <h1 class="text-4xl text-fuchsia-500 mb-8 retro-text tracking-widest">PIXEL<span class="text-cyan-400">PARTY</span></h1>
+        
+        <div class="bg-gray-800 p-8 rounded-lg shadow-xl border-4 border-gray-700">
+            <h2 class="text-xl mb-6 text-yellow-300">Multiplayer Arcade Hub</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Host Section -->
+                <div class="bg-gray-700 p-4 rounded border-2 border-fuchsia-500">
+                    <h3 class="mb-4 text-fuchsia-400">Host a Game</h3>
+                    <button id="btn-host" class="w-full bg-fuchsia-600 hover:bg-fuchsia-500 text-white p-3 rounded font-bold transition">Generate Room Code</button>
+                    <p id="room-code-display" class="mt-4 text-sm text-gray-300 hidden">Room Code: <span id="code-span" class="text-white font-mono bg-gray-900 p-1 rounded select-all"></span></p>
+                </div>
+
+                <!-- Join Section -->
+                <div class="bg-gray-700 p-4 rounded border-2 border-cyan-400">
+                    <h3 class="mb-4 text-cyan-300">Join a Friend</h3>
+                    <input type="text" id="join-code" placeholder="Enter Room Code" class="w-full bg-gray-900 text-white p-3 rounded mb-3 text-center font-mono border border-gray-600 focus:outline-none focus:border-cyan-400">
+                    <button id="btn-join" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white p-3 rounded font-bold transition">Connect</button>
+                </div>
+            </div>
+
+            <!-- Game Selection (Visible after connection) -->
+            <div id="game-selection" class="hidden">
+                <h3 class="text-green-400 mb-4">Connection Established! Choose a Game:</h3>
+                <div class="flex gap-4 justify-center">
+                    <button id="btn-play-bots" class="bg-green-600 hover:bg-green-500 p-3 rounded text-sm transition">Bumper Bots</button>
+                    <button class="bg-gray-600 p-3 rounded text-sm opacity-50 cursor-not-allowed" title="Coming Soon">Tower Tumble</button>
+                    <button class="bg-gray-600 p-3 rounded text-sm opacity-50 cursor-not-allowed" title="Coming Soon">Dungeon Dashers</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Game Container -->
+    <div id="game-ui" class="hidden flex-col items-center w-full max-w-4xl mt-4">
+        <div class="w-full flex justify-between mb-2 text-sm text-gray-400">
+            <span id="player-role-display">Role: </span>
+            <button id="btn-leave" class="text-red-400 hover:text-red-300">Leave Room</button>
+        </div>
+        <canvas id="gameCanvas" width="800" height="600" class="bg-black border-4 border-gray-700 rounded-lg shadow-2xl max-w-full h-auto"></canvas>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/network.js"></script>
+    <script src="js/bumper-bots.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
